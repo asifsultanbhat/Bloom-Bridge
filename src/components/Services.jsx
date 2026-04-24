@@ -35,7 +35,7 @@ const assessments = [
 const Services = () => {
   return (
     <section id="services" style={{ 
-      backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url("/assets/bg-learning.png")',
+      backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("/assets/bg-learning.png")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed'
@@ -90,7 +90,7 @@ const Services = () => {
           ))}
         </div>
 
-        <div className="glass" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)', backgroundColor: '#F9F7F2' }}>
+        <div className="glass" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
             <Microscope size={32} color="var(--secondary)" />
             <h3 style={{ fontSize: '1.8rem', color: "var(--secondary)" }}>The Assessment Suite</h3>

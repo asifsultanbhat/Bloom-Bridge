@@ -23,31 +23,37 @@ const Process = () => {
   const [currentBg, setCurrentBg] = React.useState(0);
   const [nextBg, setNextBg] = React.useState(1);
   const [isTransitioning, setIsTransitioning] = React.useState(false);
-  
+
   const backgrounds = [
     '/assets/bg-eyes-vibrant.png',
     '/assets/bg-eyes-dreamy.png',
     '/assets/bg-eyes-intellectual.png'
   ];
 
+  const positions = [
+    'center 50%', // vibrant
+    'center 75%',  // dreamy
+    'center 50%'  // intellectual
+  ];
+
   React.useEffect(() => {
     const timer = setInterval(() => {
       setIsTransitioning(true);
-      
+
       // Wait for blur to peak
       setTimeout(() => {
         setCurrentBg(nextBg);
         setNextBg((nextBg + 1) % backgrounds.length);
         setIsTransitioning(false);
       }, 1000);
-      
+
     }, 5000);
     return () => clearInterval(timer);
   }, [nextBg]);
 
   return (
-    <section id="process" style={{ 
-      padding: 'var(--space-lg) 0', 
+    <section id="process" style={{
+      padding: 'var(--space-lg) 0',
       position: 'relative',
       overflow: 'hidden',
       backgroundColor: '#fff'
@@ -56,11 +62,11 @@ const Process = () => {
       <div style={{
         position: 'absolute',
         top: 0, left: 0, width: '100%', height: '100%',
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url("${backgrounds[currentBg]}")`,
+        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("${backgrounds[currentBg]}")`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center 85%',
+        backgroundPosition: positions[currentBg],
         backgroundAttachment: 'fixed',
-        filter: isTransitioning ? 'blur(15px) scale(1.05)' : 'blur(0px) scale(1)',
+        filter: isTransitioning ? 'blur(15px) scale(1.05)' : 'blur(10px) scale(1)',
         opacity: isTransitioning ? 0.8 : 1,
         transition: 'filter 1.2s ease-in-out, opacity 1.2s ease-in-out, transform 1.2s ease-in-out',
         zIndex: 1
@@ -70,9 +76,9 @@ const Process = () => {
       <div style={{
         position: 'absolute',
         top: 0, left: 0, width: '100%', height: '100%',
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url("${backgrounds[nextBg]}")`,
+        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("${backgrounds[nextBg]}")`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center 85%',
+        backgroundPosition: positions[nextBg],
         backgroundAttachment: 'fixed',
         opacity: 0,
         zIndex: 0
@@ -88,34 +94,38 @@ const Process = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', position: 'relative' }}>
           {steps.map((step, i) => (
-            <div key={i} style={{ textAlign: 'center', position: 'relative' }}>
-              <div style={{ 
-                width: '80px', 
-                height: '80px', 
-                backgroundColor: 'var(--primary)', 
-                color: 'white', 
-                borderRadius: 'var(--radius-full)', 
-                display: 'flex', 
-                alignItems: 'center', 
+            <div key={i} className="glass" style={{
+              textAlign: 'center',
+              position: 'relative',
+              padding: '2.5rem',
+              borderRadius: 'var(--radius-lg)',
+              transition: 'transform 0.8s ease'
+            }}>
+              <div style={{
+                width: '70px',
+                height: '70px',
+                backgroundColor: 'rgba(123, 158, 135, 0.15)',
+                color: 'var(--primary)',
+                borderRadius: 'var(--radius-md)',
+                display: 'flex',
+                alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 1.5rem',
-                boxShadow: 'var(--shadow)',
-                zIndex: 2,
                 position: 'relative'
               }}>
                 {step.icon}
               </div>
-              <h3 style={{ marginBottom: '1rem' }}>{step.title}</h3>
-              <p style={{ color: 'var(--on-surface)', fontSize: '0.95rem' }}>{step.desc}</p>
-              
+              <h3 style={{ marginBottom: '1rem', color: 'var(--secondary)' }}>{step.title}</h3>
+              <p style={{ color: 'var(--on-surface)', fontSize: '0.95rem', lineHeight: '1.6' }}>{step.desc}</p>
+
               {i < steps.length - 1 && (
-                <div className="connector" style={{ 
-                  position: 'absolute', 
-                  top: '40px', 
-                  right: '-50%', 
-                  width: '100%', 
-                  height: '2px', 
-                  borderTop: '2px dashed var(--primary)', 
+                <div className="connector" style={{
+                  position: 'absolute',
+                  top: '40px',
+                  right: '-50%',
+                  width: '100%',
+                  height: '2px',
+                  borderTop: '2px dashed var(--primary)',
                   opacity: 0.3,
                   zIndex: 1
                 }} />
