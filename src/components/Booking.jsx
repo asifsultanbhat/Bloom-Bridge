@@ -28,22 +28,48 @@ const Booking = () => {
   };
 
   return (
-    <section id="booking" style={{ backgroundColor: 'var(--secondary)', color: 'white', padding: '5rem 0' }}>
-      <div className="container">
+    <section id="booking" style={{ 
+      position: 'relative',
+      padding: '8rem 0',
+      color: 'white',
+      overflow: 'hidden',
+      backgroundColor: 'var(--secondary)'
+    }}>
+      {/* Background Image Layer */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundImage: 'url(/assets/bg-booking.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center 70%',
+        backgroundAttachment: 'fixed',
+        filter: 'blur(3px) brightness(0.4)',
+        transform: 'scale(1.1)',
+        zIndex: 0
+      }} />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
           <div>
-            <h2 style={{ fontSize: '2.8rem', marginBottom: '1.5rem', color: 'white' }}>Start the Journey</h2>
-            <p style={{ fontSize: '1.1rem', marginBottom: '2.5rem', opacity: 0.9, lineHeight: '1.7' }}>
+            <h2 style={{ fontSize: '3.2rem', marginBottom: '1.5rem', color: 'white', fontWeight: 700 }}>Start the Journey</h2>
+            <p style={{ fontSize: '1.2rem', marginBottom: '2.5rem', opacity: 0.9, lineHeight: '1.8' }}>
               We invite you to schedule a dedicated 60-minute consultation. This is a secure space to discuss your child's needs and explore the best path forward.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <ShieldCheck size={24} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.8rem' }}>
+              <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', fontSize: '1.1rem' }}>
+                <div style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)' }}>
+                  <ShieldCheck size={28} />
+                </div>
                 <span>Secure & Confidential Session</span>
               </div>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <Mail size={24} />
+              <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', fontSize: '1.1rem' }}>
+                <div style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)' }}>
+                  <Mail size={28} />
+                </div>
                 <span>Ahmadgousia@gmail.com</span>
               </div>
             </div>
@@ -52,43 +78,44 @@ const Booking = () => {
           <div className="glass" style={{
             padding: '4rem',
             borderRadius: 'var(--radius-lg)',
-            backgroundColor: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
             textAlign: 'center',
-            backdropFilter: 'blur(10px)',
-            boxShadow: 'var(--shadow-xl)'
+            boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+            border: '1px solid rgba(255, 255, 255, 0.15)'
           }}>
             <div style={{
-              width: '80px',
-              height: '80px',
+              width: '90px',
+              height: '90px',
               backgroundColor: 'var(--primary)',
               borderRadius: 'var(--radius-full)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              margin: '0 auto 2rem'
+              margin: '0 auto 2.5rem',
+              boxShadow: '0 0 30px rgba(123, 158, 135, 0.4)'
             }}>
-              <CalendarIcon size={40} color="white" />
+              <CalendarIcon size={45} color="white" />
             </div>
-            <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Initial Consultation</h3>
-            <p style={{ opacity: 0.8, marginBottom: '2.5rem' }}>60 Minute Video/Phone Session</p>
+            <h3 style={{ fontSize: '2rem', marginBottom: '1rem', fontWeight: 600 }}>Initial Consultation</h3>
+            <p style={{ opacity: 0.8, marginBottom: '2.5rem', fontSize: '1.1rem' }}>60 Minute Video/Phone Session</p>
 
             <button
               onClick={openBooking}
               className="btn btn-primary"
               style={{
                 width: '100%',
-                padding: '1.2rem',
-                fontSize: '1.1rem',
+                padding: '1.4rem',
+                fontSize: '1.2rem',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '0.8rem'
+                gap: '1rem',
+                borderRadius: 'var(--radius-md)',
+                fontWeight: 600
               }}
             >
-              Select Date & Time <ArrowRight size={20} />
+              Select Date & Time <ArrowRight size={22} />
             </button>
-            <p style={{ fontSize: '0.8rem', marginTop: '1.5rem', opacity: 0.5 }}>
+            <p style={{ fontSize: '0.85rem', marginTop: '2rem', opacity: 0.6, letterSpacing: '0.05em' }}>
               Powered by Calendly Automation
             </p>
           </div>

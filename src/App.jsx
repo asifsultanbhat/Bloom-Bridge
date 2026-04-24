@@ -41,11 +41,11 @@ function App() {
       <div className="reveal"><Resources /></div>
       <div className="reveal"><FAQ /></div>
       <div className="reveal"><Booking /></div>
-      
+
       <footer style={{ padding: '4rem 0', textAlign: 'center', backgroundColor: '#F9F7F2', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
         <div className="container">
           <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-             <span style={{ fontFamily: 'Outfit', fontWeight: 700, fontSize: '1.4rem', color: 'var(--primary)' }}>Bloom & Bridge</span>
+            <span style={{ fontFamily: 'Outfit', fontWeight: 700, fontSize: '1.4rem', color: 'var(--primary)' }}>Bloom & Bridge</span>
           </div>
           <p style={{ color: 'var(--on-surface)', fontSize: '0.9rem', opacity: 0.7 }}>
             &copy; {new Date().getFullYear()} Professional Practice Website. All rights reserved.
