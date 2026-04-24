@@ -26,6 +26,7 @@ const Testimonials = () => {
     <section id="testimonials" style={{ padding: 'var(--space-lg) 0' }}>
       <div className="container">
         <div className="testimonials-heading" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <p className="section-kicker" style={{ marginBottom: '0.75rem' }}>Parent Insights</p>
           <h2 style={{ fontSize: '2.5rem', color: 'var(--secondary)' }}>Stories of Success</h2>
         </div>
 

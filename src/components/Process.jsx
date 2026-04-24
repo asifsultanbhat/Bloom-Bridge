@@ -125,6 +125,22 @@ const Process = () => {
               backdropFilter: 'blur(4px)',
               backgroundColor: 'rgba(255, 255, 255, 0.78)'
             }}>
+              {/* Step Number */}
+              <span style={{
+                position: 'absolute',
+                top: '1rem',
+                left: '1.5rem',
+                fontFamily: 'Outfit, sans-serif',
+                fontSize: '3.5rem',
+                fontWeight: 900,
+                color: 'var(--primary)',
+                opacity: 0.1,
+                lineHeight: 1,
+                letterSpacing: '-0.04em',
+                userSelect: 'none'
+              }}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
               <div style={{
                 width: '80px',
                 height: '80px',

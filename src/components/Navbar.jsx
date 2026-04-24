@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="container" style={{ height: '70px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <a className="nav-brand" href="#" aria-label="Bloom & Bridge home" onClick={closeMenu} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Flower2 size={28} color="var(--primary)" />
-          <span style={{ fontFamily: 'Outfit', fontWeight: 700, fontSize: '1.2rem', color: 'var(--on-background)' }}>
+          <span style={{ fontFamily: 'Outfit', fontWeight: 800, fontSize: '1.35rem', color: 'var(--on-background)' }}>
             Bloom & Bridge
           </span>
         </a>
