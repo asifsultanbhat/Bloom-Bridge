@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Color Palette - Serene Professional */
+  --primary: #7B9E87; /* Sage */
+  --primary-dark: #5F7A68;
+  --secondary: #3D7B7B; /* Teal */
+  --accent: #E9967A; /* Coral */
+  --background: #F9F7F2; /* Warm White */
+  --surface: #FFFFFF;
+  --on-background: #2C3E50;
+  --on-surface: #34495E;
+  --on-primary: #FFFFFF;
+  
+  /* Semantic Colors */
+  --success: #81C784;
+  --error: #E57373;
+  --warning: #FFB74D;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  
+  /* Elevation & Blur */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 2rem;
+  --radius-full: 9999px;
+  --glass: rgba(255, 255, 255, 0.7);
+  --blur: blur(12px);
+  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-image: linear-gradient(rgba(249, 247, 242, 0.65), rgba(249, 247, 242, 0.65)), url('/assets/bg-bridge.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: var(--on-background);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+/* Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius-full);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
+  border: none;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  box-shadow: 0 4px 15px rgba(123, 158, 135, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* Section Styling */
+section {
+  padding: var(--space-lg) 0;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-lg: 3rem;
+    --space-xl: 5rem;
+  }
+  
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+}
