@@ -1,4 +1,3 @@
-import React from 'react';
 import { Quote } from 'lucide-react';
 
 const testimonials = [
@@ -23,27 +22,48 @@ const Testimonials = () => {
   return (
     <section id="testimonials" style={{ padding: 'var(--space-lg) 0' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <div className="testimonials-heading" style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <h2 style={{ fontSize: '2.5rem', color: 'var(--secondary)' }}>Stories of Success</h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+        <div className="testimonials-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
           {testimonials.map((t, i) => (
-            <div key={i} className="glass" style={{ padding: '2.5rem', borderRadius: 'var(--radius-lg)', position: 'relative' }}>
-              <div style={{ position: 'absolute', top: '1rem', right: '1.5rem', opacity: 0.1, color: 'var(--primary)' }}>
+            <div key={i} className="glass interactive-card testimonial-card" style={{ padding: '2.5rem', borderRadius: 'var(--radius-lg)', position: 'relative', backgroundColor: 'rgba(255,255,255,0.82)', border: '1px solid rgba(18, 24, 31, 0.08)' }}>
+              <div style={{ position: 'absolute', top: '1rem', right: '1.5rem', opacity: 0.16, color: 'var(--primary)' }}>
                 <Quote size={48} />
               </div>
-              <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', color: 'var(--on-surface)', lineHeight: '1.8' }}>
+              <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', color: 'var(--on-background)', lineHeight: '1.8', fontWeight: 500 }}>
                 "{t.text}"
               </p>
               <div>
-                <p style={{ fontWeight: 700, color: 'var(--on-background)' }}>{t.name}</p>
-                <p style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 500 }}>{t.role}</p>
+                <p style={{ fontWeight: 800, color: 'var(--on-background)' }}>{t.name}</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--primary-dark)', fontWeight: 700 }}>{t.role}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .testimonials-heading {
+            text-align: left !important;
+            margin-bottom: 2rem !important;
+          }
+          .testimonials-heading h2 {
+            font-size: 1.85rem !important;
+          }
+          .testimonials-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+          .testimonial-card {
+            padding: 1.35rem !important;
+          }
+          .testimonial-card p {
+            font-size: 0.95rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

@@ -2,3 +2,112 @@
 .app-container {
   min-height: 100vh;
 }
+
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  padding: 4.5rem 0;
+  text-align: center;
+  background-color: var(--background);
+  border-top: 1px solid rgba(74, 99, 82, 0.16);
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/bg-bridge.png');
+  background-size: cover;
+  background-position: center 62%;
+  background-attachment: fixed;
+  opacity: 0.62;
+  transform: scale(1.06);
+}
+
+.site-footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(249, 247, 242, 0.54), rgba(249, 247, 242, 0.76)),
+    linear-gradient(90deg, rgba(74, 99, 82, 0.1), transparent 34%, transparent 66%, rgba(44, 91, 91, 0.1));
+}
+
+.site-footer .container {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-brand {
+  margin-bottom: 1.25rem;
+}
+
+.footer-brand span {
+  display: inline-flex;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid rgba(74, 99, 82, 0.2);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.54);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  color: var(--primary-dark);
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  box-shadow: var(--shadow);
+}
+
+.site-footer p {
+  color: var(--on-background);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 560px;
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.42);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.footer-links a {
+  padding-bottom: 0.15rem;
+  border-bottom: 1px solid transparent;
+}
+
+.footer-links a:hover {
+  border-color: currentColor;
+  color: var(--secondary);
+}
+
+@media (max-width: 768px) {
+  .site-footer::before {
+    background-attachment: scroll;
+    background-position: center;
+  }
+
+  .site-footer {
+    padding: 3rem 0;
+  }
+
+  .footer-brand span {
+    padding: 0.75rem 1rem;
+    font-size: 1.2rem;
+  }
+
+  .site-footer p {
+    font-size: 0.88rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+}

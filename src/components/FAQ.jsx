@@ -23,6 +23,21 @@ const faqs = [
 const FAQ = () => {
   const [active, setActive] = React.useState(null);
 
+  const toggleFaq = (index) => {
+    if (window.matchMedia('(hover: hover)').matches) {
+      setActive(index);
+      return;
+    }
+
+    setActive((current) => (current === index ? null : index));
+  };
+
+  const closeOnFocusLeave = (event, index) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setActive((current) => (current === index ? null : current));
+    }
+  };
+
   return (
     <section id="faq" style={{ 
       backgroundImage: 'linear-gradient(rgba(249, 247, 242, 0.7), rgba(249, 247, 242, 0.7)), url("/assets/bg-faq.png")',
@@ -31,15 +46,31 @@ const FAQ = () => {
       backgroundAttachment: 'fixed'
     }}>
       <div className="container" style={{ maxWidth: '800px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <div className="faq-heading" style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <h2 style={{ fontSize: '2.5rem', color: 'var(--secondary)' }}>Frequently Asked Questions</h2>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div className="faq-list" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {faqs.map((faq, i) => (
-            <div key={i} className="glass" style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+            <div
+              key={i}
+              className="glass"
+              onMouseEnter={() => setActive(i)}
+              onMouseLeave={() => setActive(null)}
+              onFocus={() => setActive(i)}
+              onBlur={(event) => closeOnFocusLeave(event, i)}
+              style={{
+                borderRadius: 'var(--radius-md)',
+                overflow: 'hidden',
+                backgroundColor: 'rgba(255,255,255,0.84)',
+                border: '1px solid rgba(18, 24, 31, 0.08)',
+                transition: 'border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease'
+              }}
+            >
               <button 
-                onClick={() => setActive(active === i ? null : i)}
+                onClick={() => toggleFaq(i)}
+                aria-expanded={active === i}
+                aria-controls={`faq-answer-${i}`}
                 style={{ 
                   width: '100%', 
                   padding: '1.5rem', 
@@ -52,8 +83,9 @@ const FAQ = () => {
                   textAlign: 'left',
                   fontFamily: 'Outfit',
                   fontSize: '1.1rem',
-                  fontWeight: 600,
-                  color: 'var(--on-background)'
+                  fontWeight: 700,
+                  color: 'var(--on-background)',
+                  transition: 'background 0.25s ease'
                 }}
               >
                 {faq.q}
@@ -61,7 +93,7 @@ const FAQ = () => {
               </button>
               
               {active === i && (
-                <div style={{ padding: '0 1.5rem 1.5rem', color: 'var(--on-surface)', lineHeight: '1.6' }}>
+                <div id={`faq-answer-${i}`} style={{ padding: '0 1.5rem 1.5rem', color: 'var(--on-background)', lineHeight: '1.6', fontWeight: 500 }}>
                   {faq.a}
                 </div>
               )}
@@ -69,6 +101,39 @@ const FAQ = () => {
           ))}
         </div>
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+          #faq {
+            background-attachment: scroll !important;
+            background-position: center top !important;
+          }
+          .faq-heading {
+            text-align: left !important;
+            margin-bottom: 2rem !important;
+          }
+          .faq-heading h2 {
+            font-size: 1.85rem !important;
+          }
+          .faq-list {
+            gap: 0.8rem !important;
+          }
+          .faq-list button {
+            align-items: flex-start !important;
+            gap: 1rem;
+            padding: 1.05rem !important;
+            font-size: 1rem !important;
+            line-height: 1.35;
+          }
+          .faq-list button svg {
+            flex: 0 0 auto;
+            margin-top: 0.1rem;
+          }
+          .faq-list div[id^="faq-answer"] {
+            padding: 0 1.05rem 1.1rem !important;
+            font-size: 0.95rem;
+          }
+        }
+      `}</style>
     </section>
   );
 };

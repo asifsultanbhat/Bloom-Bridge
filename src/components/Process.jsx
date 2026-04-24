@@ -1,6 +1,42 @@
 import React from 'react';
 import { Search, ClipboardList, TrendingUp } from 'lucide-react';
 
+const processBackgrounds = [
+  {
+    image: '/assets/bg-eyes-vibrant.png',
+    position: 'center 50%',
+    origin: '38% 46%',
+    fromX: '-1.8%',
+    toX: '0.9%',
+    fromY: '-1.2%',
+    toY: '0.5%',
+    fromScale: '1.04',
+    toScale: '1.16',
+  },
+  {
+    image: '/assets/bg-eyes-dreamy.png',
+    position: 'center 75%',
+    origin: '60% 54%',
+    fromX: '1.2%',
+    toX: '-0.9%',
+    fromY: '0.8%',
+    toY: '-0.4%',
+    fromScale: '1.05',
+    toScale: '1.15',
+  },
+  {
+    image: '/assets/bg-eyes-intellectual.png',
+    position: 'center 50%',
+    origin: '52% 44%',
+    fromX: '-0.8%',
+    toX: '1.1%',
+    fromY: '1.1%',
+    toY: '-0.6%',
+    fromScale: '1.03',
+    toScale: '1.14',
+  },
+];
+
 const steps = [
   {
     title: "Initial Consultation",
@@ -20,113 +56,102 @@ const steps = [
 ];
 
 const Process = () => {
-  const [currentBg, setCurrentBg] = React.useState(0);
-  const [nextBg, setNextBg] = React.useState(1);
-  const [isTransitioning, setIsTransitioning] = React.useState(false);
-
-  const backgrounds = [
-    '/assets/bg-eyes-vibrant.png',
-    '/assets/bg-eyes-dreamy.png',
-    '/assets/bg-eyes-intellectual.png'
-  ];
-
-  const positions = [
-    'center 50%', // vibrant
-    'center 75%',  // dreamy
-    'center 50%'  // intellectual
-  ];
+  const [activeBg, setActiveBg] = React.useState(0);
 
   React.useEffect(() => {
-    const timer = setInterval(() => {
-      setIsTransitioning(true);
+    processBackgrounds.forEach(({ image }) => {
+      const img = new Image();
+      img.src = image;
+    });
+  }, []);
 
-      // Wait for blur to peak
-      setTimeout(() => {
-        setCurrentBg(nextBg);
-        setNextBg((nextBg + 1) % backgrounds.length);
-        setIsTransitioning(false);
-      }, 1000);
-
+  React.useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveBg((current) => (current + 1) % processBackgrounds.length);
     }, 3000);
-    return () => clearInterval(timer);
-  }, [nextBg]);
+
+    return () => window.clearInterval(timer);
+  }, []);
 
   return (
     <section id="process" style={{
       padding: 'var(--space-lg) 0',
       position: 'relative',
       overflow: 'hidden',
-      backgroundColor: '#fff'
+      backgroundColor: '#f8fafc' 
     }}>
-      {/* Background Layer 1 (Current) */}
-      <div style={{
-        position: 'absolute',
-        top: 0, left: 0, width: '100%', height: '100%',
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("${backgrounds[currentBg]}")`,
-        backgroundSize: 'cover',
-        backgroundPosition: positions[currentBg],
-        backgroundAttachment: 'fixed',
-        filter: isTransitioning ? 'blur(15px) scale(1.05)' : 'blur(10px) scale(1)',
-        opacity: isTransitioning ? 0.8 : 1,
-        transition: 'filter 1.2s ease-in-out, opacity 1.2s ease-in-out, transform 1.2s ease-in-out',
-        zIndex: 1
-      }} />
-
-      {/* Background Layer 2 (Next - hidden until transition) */}
-      <div style={{
-        position: 'absolute',
-        top: 0, left: 0, width: '100%', height: '100%',
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("${backgrounds[nextBg]}")`,
-        backgroundSize: 'cover',
-        backgroundPosition: positions[nextBg],
-        backgroundAttachment: 'fixed',
-        opacity: 0,
-        zIndex: 0
-      }} />
+      <div className="process-backgrounds" aria-hidden="true">
+        {processBackgrounds.map((background, index) => (
+          <div
+            key={background.image}
+            className={`process-background ${index === activeBg ? 'active' : ''}`}
+            style={{
+              '--motion-origin': background.origin,
+              '--from-x': background.fromX,
+              '--to-x': background.toX,
+              '--from-y': background.fromY,
+              '--to-y': background.toY,
+              '--from-scale': background.fromScale,
+              '--to-scale': background.toScale,
+            }}
+          >
+            <img
+              src={background.image}
+              alt=""
+              style={{ objectPosition: background.position }}
+            />
+          </div>
+        ))}
+        <div className="process-background-overlay" />
+      </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 style={{ fontSize: '2.5rem', color: 'var(--secondary)', marginBottom: '1rem' }}>How We Work</h2>
-          <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--on-surface)' }}>
-            A structured, empathetic approach to ensuring your child reaches their full potential.
+        <div className="process-heading" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <h2 style={{ fontSize: '3.5rem', color: 'var(--secondary)', marginBottom: '1.5rem', fontWeight: '800', textShadow: '0 2px 4px rgba(255,255,255,0.5)' }}>How We Work</h2>
+          <p style={{ maxWidth: '650px', margin: '0 auto', color: 'var(--on-background)', fontSize: '1.15rem', fontWeight: '600' }}>
+            A structured, empathetic approach to ensuring your child reaches their full potential through evidence-based care.
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', position: 'relative' }}>
+        <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', position: 'relative' }}>
           {steps.map((step, i) => (
-            <div key={i} className="glass" style={{
+            <div key={i} className="glass interactive-card process-card" style={{
               textAlign: 'center',
               position: 'relative',
-              padding: '2.5rem',
+              padding: '3rem 2rem',
               borderRadius: 'var(--radius-lg)',
-              transition: 'transform 0.8s ease'
+              transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+              border: '1px solid rgba(18, 24, 31, 0.08)',
+              backdropFilter: 'blur(4px)',
+              backgroundColor: 'rgba(255, 255, 255, 0.78)'
             }}>
               <div style={{
-                width: '70px',
-                height: '70px',
-                backgroundColor: 'rgba(123, 158, 135, 0.15)',
+                width: '80px',
+                height: '80px',
+                backgroundColor: 'rgba(123, 158, 135, 0.12)',
                 color: 'var(--primary)',
                 borderRadius: 'var(--radius-md)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                margin: '0 auto 1.5rem',
-                position: 'relative'
+                margin: '0 auto 2rem',
+                position: 'relative',
+                boxShadow: '0 8px 16px -4px rgba(123, 158, 135, 0.1)'
               }}>
                 {step.icon}
               </div>
-              <h3 style={{ marginBottom: '1rem', color: 'var(--secondary)' }}>{step.title}</h3>
-              <p style={{ color: 'var(--on-surface)', fontSize: '0.95rem', lineHeight: '1.6' }}>{step.desc}</p>
+              <h3 style={{ marginBottom: '1.25rem', color: 'var(--secondary)', fontSize: '1.5rem', fontWeight: '700' }}>{step.title}</h3>
+              <p style={{ color: 'var(--on-background)', fontSize: '1rem', lineHeight: '1.7', fontWeight: 500 }}>{step.desc}</p>
 
               {i < steps.length - 1 && (
                 <div className="connector" style={{
                   position: 'absolute',
-                  top: '40px',
+                  top: '50px',
                   right: '-50%',
                   width: '100%',
                   height: '2px',
                   borderTop: '2px dashed var(--primary)',
-                  opacity: 0.3,
+                  opacity: 0.2,
                   zIndex: 1
                 }} />
               )}
@@ -136,12 +161,124 @@ const Process = () => {
       </div>
 
       <style>{`
-        @media (max-width: 992px) {
+        .process-backgrounds {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+        .process-background {
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          overflow: hidden;
+          transform: scale(1.04);
+          filter: blur(12px) brightness(0.88) saturate(0.88);
+          transition:
+            opacity 1.55s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 1.55s cubic-bezier(0.16, 1, 0.3, 1),
+            filter 1.55s cubic-bezier(0.16, 1, 0.3, 1);
+          will-change: opacity, transform, filter;
+        }
+        .process-background.active {
+          opacity: 1;
+          transform: scale(1);
+          filter: blur(0) brightness(1) saturate(1);
+        }
+        .process-background img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transform: translate3d(var(--from-x), var(--from-y), 0) scale(var(--from-scale));
+          transform-origin: var(--motion-origin);
+          will-change: transform;
+        }
+        .process-background.active img {
+          animation: processZoom 3s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+        .process-background-overlay {
+          position: absolute;
+          inset: 0;
+          background:
+            linear-gradient(rgba(248, 250, 252, 0.28), rgba(248, 250, 252, 0.2)),
+            radial-gradient(circle at top, rgba(255, 255, 255, 0.18), transparent 54%),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 26%, transparent 74%, rgba(18, 24, 31, 0.08));
+        }
+        @keyframes processZoom {
+          0% {
+            transform: translate3d(var(--from-x), var(--from-y), 0) scale(var(--from-scale));
+          }
+          100% {
+            transform: translate3d(var(--to-x), var(--to-y), 0) scale(var(--to-scale));
+          }
+        }
+        @media (max-width: 1024px) {
           .connector { display: none; }
+        }
+        @media (max-width: 768px) {
+          #process {
+            padding: 3rem 0 !important;
+          }
+          .process-heading {
+            margin-bottom: 2rem !important;
+            text-align: left !important;
+          }
+          .process-heading h2 {
+            font-size: 2rem !important;
+            margin-bottom: 1rem !important;
+          }
+          .process-heading p {
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+          }
+          .process-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+          .process-card {
+            padding: 1.45rem 1.2rem !important;
+            text-align: left !important;
+          }
+          .process-card > div:first-child {
+            width: 58px !important;
+            height: 58px !important;
+            margin: 0 0 1rem !important;
+          }
+          .process-card h3 {
+            font-size: 1.2rem !important;
+            margin-bottom: 0.7rem !important;
+          }
+          .process-card p {
+            font-size: 0.95rem !important;
+          }
+          .process-background-overlay {
+            background:
+              linear-gradient(rgba(248, 250, 252, 0.5), rgba(248, 250, 252, 0.42)),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.16), transparent 72%);
+          }
+          .process-background {
+            filter: blur(7px) brightness(0.9) saturate(0.9);
+            transition:
+              opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+          .process-background.active img {
+            animation: processZoomMobile 3s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+          }
+        }
+        @keyframes processZoomMobile {
+          0% {
+            transform: translate3d(calc(var(--from-x) * 0.55), calc(var(--from-y) * 0.55), 0) scale(calc(var(--from-scale) - 0.02));
+          }
+          100% {
+            transform: translate3d(calc(var(--to-x) * 0.55), calc(var(--to-y) * 0.55), 0) scale(calc(var(--to-scale) - 0.03));
+          }
         }
       `}</style>
     </section>
   );
 };
+
 
 export default Process;

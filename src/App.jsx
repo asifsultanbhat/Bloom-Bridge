@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -42,15 +42,15 @@ function App() {
       <div className="reveal"><FAQ /></div>
       <div className="reveal"><Booking /></div>
 
-      <footer style={{ padding: '4rem 0', textAlign: 'center', backgroundColor: '#F9F7F2', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+      <footer className="site-footer">
         <div className="container">
-          <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-            <span style={{ fontFamily: 'Outfit', fontWeight: 700, fontSize: '1.4rem', color: 'var(--primary)' }}>Bloom & Bridge</span>
+          <div className="footer-brand">
+            <span>Bloom & Bridge</span>
           </div>
-          <p style={{ color: 'var(--on-surface)', fontSize: '0.9rem', opacity: 0.7 }}>
-            &copy; {new Date().getFullYear()} Professional Practice Website. All rights reserved.
+          <p>
+            &copy; {new Date().getFullYear()} Bloom & Bridge. Professional rehabilitation psychology and special education support.
           </p>
-          <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', fontSize: '0.8rem', opacity: 0.6 }}>
+          <div className="footer-links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>
           </div>

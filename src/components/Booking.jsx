@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ShieldCheck, Mail, Calendar as CalendarIcon, ArrowRight } from 'lucide-react';
 
 const Booking = () => {
@@ -15,16 +15,21 @@ const Booking = () => {
 
     return () => {
       const existingScript = document.querySelector('script[src*="calendly.com"]');
+      const existingLink = document.querySelector('link[href*="calendly.com"]');
       if (existingScript) document.body.removeChild(existingScript);
+      if (existingLink) document.head.removeChild(existingLink);
     };
   }, []);
 
   const openBooking = () => {
+    const bookingUrl = 'https://calendly.com/ahmadgousia/30min';
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/ahmadgousia/30min'
+        url: bookingUrl
       });
+      return;
     }
+    window.open(bookingUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -36,7 +41,7 @@ const Booking = () => {
       backgroundColor: 'var(--secondary)'
     }}>
       {/* Background Image Layer */}
-      <div style={{
+      <div className="booking-background" style={{
         position: 'absolute',
         top: 0,
         left: 0,
@@ -52,30 +57,30 @@ const Booking = () => {
       }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
-          <div>
+        <div className="booking-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
+          <div className="booking-copy">
             <h2 style={{ fontSize: '3.2rem', marginBottom: '1.5rem', color: 'white', fontWeight: 700 }}>Start the Journey</h2>
-            <p style={{ fontSize: '1.2rem', marginBottom: '2.5rem', opacity: 0.9, lineHeight: '1.8' }}>
-              We invite you to schedule a dedicated 60-minute consultation. This is a secure space to discuss your child's needs and explore the best path forward.
+            <p style={{ fontSize: '1.2rem', marginBottom: '2.5rem', opacity: 0.96, lineHeight: '1.8', fontWeight: 500 }}>
+              We invite you to schedule a dedicated 30-minute consultation. This is a secure space to discuss your child's needs and explore the best path forward.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.8rem' }}>
-              <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', fontSize: '1.1rem' }}>
+            <div className="booking-features" style={{ display: 'flex', flexDirection: 'column', gap: '1.8rem' }}>
+              <div className="booking-feature" style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', fontSize: '1.1rem' }}>
                 <div style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)' }}>
                   <ShieldCheck size={28} />
                 </div>
                 <span>Secure & Confidential Session</span>
               </div>
-              <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', fontSize: '1.1rem' }}>
+              <div className="booking-feature" style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', fontSize: '1.1rem' }}>
                 <div style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)' }}>
                   <Mail size={28} />
                 </div>
-                <span>Ahmadgousia@gmail.com</span>
+                <a href="mailto:Ahmadgousia@gmail.com">Ahmadgousia@gmail.com</a>
               </div>
             </div>
           </div>
 
-          <div className="glass" style={{
+          <div className="glass booking-card" style={{
             padding: '4rem',
             borderRadius: 'var(--radius-lg)',
             textAlign: 'center',
@@ -96,7 +101,7 @@ const Booking = () => {
               <CalendarIcon size={45} color="white" />
             </div>
             <h3 style={{ fontSize: '2rem', marginBottom: '1rem', fontWeight: 600 }}>Initial Consultation</h3>
-            <p style={{ opacity: 0.8, marginBottom: '2.5rem', fontSize: '1.1rem' }}>60 Minute Video/Phone Session</p>
+            <p style={{ opacity: 0.92, marginBottom: '2.5rem', fontSize: '1.1rem', fontWeight: 500 }}>30 Minute Video/Phone Session</p>
 
             <button
               onClick={openBooking}
@@ -115,7 +120,7 @@ const Booking = () => {
             >
               Select Date & Time <ArrowRight size={22} />
             </button>
-            <p style={{ fontSize: '0.85rem', marginTop: '2rem', opacity: 0.6, letterSpacing: '0.05em' }}>
+            <p style={{ fontSize: '0.85rem', marginTop: '2rem', opacity: 0.78, letterSpacing: '0.05em', fontWeight: 500 }}>
               Powered by Calendly Automation
             </p>
           </div>
@@ -124,9 +129,56 @@ const Booking = () => {
 
       <style>{`
         @media (max-width: 992px) {
-          #booking .container { grid-template-columns: 1fr; text-align: center; }
-          #booking div:first-child div { align-items: center; justify-content: center; }
-          .glass { padding: 3rem 2rem !important; }
+          .booking-layout { grid-template-columns: 1fr !important; text-align: center; gap: 3rem !important; }
+          .booking-feature { align-items: center; justify-content: center; }
+          #booking .glass { padding: 3rem 2rem !important; }
+        }
+        @media (max-width: 640px) {
+          #booking { padding: 3.5rem 0 !important; }
+          .booking-background {
+            background-attachment: scroll !important;
+          }
+          .booking-layout {
+            gap: 2rem !important;
+            text-align: left !important;
+          }
+          .booking-copy h2 {
+            font-size: 2rem !important;
+            margin-bottom: 1rem !important;
+          }
+          .booking-copy > p {
+            font-size: 1rem !important;
+            line-height: 1.65 !important;
+            margin-bottom: 1.75rem !important;
+          }
+          .booking-features {
+            gap: 1rem !important;
+          }
+          .booking-feature {
+            justify-content: flex-start !important;
+            gap: 0.85rem !important;
+            font-size: 0.98rem !important;
+            align-items: flex-start !important;
+          }
+          .booking-feature a {
+            overflow-wrap: anywhere;
+          }
+          .booking-card {
+            padding: 1.5rem !important;
+            border-radius: var(--radius-lg) !important;
+          }
+          .booking-card > div:first-child {
+            width: 68px !important;
+            height: 68px !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .booking-card h3 {
+            font-size: 1.45rem !important;
+          }
+          .booking-card button {
+            padding: 1rem !important;
+            font-size: 1rem !important;
+          }
         }
       `}</style>
     </section>
