@@ -5,29 +5,50 @@ const About = () => {
     <section id="about">
       <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '5rem', alignItems: 'center' }}>
         <div className="about-visual" style={{ position: 'relative' }}>
-          <div style={{ 
+          <div className="about-portrait" style={{ 
             width: '100%', 
             height: '600px', 
             borderRadius: 'var(--radius-lg)', 
             backgroundColor: 'var(--primary)',
+            backgroundImage: 'linear-gradient(rgba(54, 73, 59, 0.22), rgba(44, 91, 91, 0.34)), url("/assets/optimized/bg-garden.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             overflow: 'hidden'
           }}>
-            {/* Placeholder for Gousia's professional photo */}
             <div style={{ 
               width: '100%', 
               height: '100%', 
               display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
+              alignItems: 'flex-end', 
+              justifyContent: 'flex-start',
               color: 'white',
-              fontSize: '1.2rem',
-              fontWeight: 600,
               flexDirection: 'column',
               gap: '1rem',
-              background: 'linear-gradient(135deg, var(--primary), var(--secondary))'
+              padding: '2rem',
+              background: 'linear-gradient(180deg, transparent 12%, rgba(18, 24, 31, 0.18) 46%, rgba(18, 24, 31, 0.72))'
             }}>
-              <Users size={64} />
-              Gousia Ahmad
+              <div style={{ marginTop: 'auto', width: '100%' }}>
+                <div style={{
+                  width: '78px',
+                  height: '78px',
+                  borderRadius: 'var(--radius-full)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '1rem',
+                  background: 'rgba(255,255,255,0.18)',
+                  border: '1px solid rgba(255,255,255,0.28)',
+                  backdropFilter: 'blur(12px)'
+                }}>
+                  <Users size={42} />
+                </div>
+                <p style={{ fontFamily: 'Outfit', fontSize: '1.8rem', fontWeight: 800, marginBottom: '0.35rem' }}>
+                  Gousia Ahmad
+                </p>
+                <p style={{ maxWidth: '300px', fontSize: '0.95rem', lineHeight: 1.6, fontWeight: 600, opacity: 0.94 }}>
+                  Professional portrait placeholder. Replace this with the final photo before launch.
+                </p>
+              </div>
             </div>
           </div>
           <div className="glass about-stat" style={{
@@ -103,6 +124,9 @@ const About = () => {
           .about-visual > div:first-child {
             height: 260px !important;
             border-radius: var(--radius-lg) !important;
+          }
+          .about-portrait > div {
+            padding: 1.25rem !important;
           }
           .about-stat {
             position: relative !important;

@@ -34,7 +34,7 @@ const assessments = [
 const Services = () => {
   return (
     <section id="services" style={{ 
-      backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("/assets/bg-learning.png")',
+      backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("/assets/optimized/bg-learning.jpg")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed'
@@ -47,7 +47,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '5rem' }}>
+        <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
           {services.map((s, i) => (
             <div key={i} className="glass interactive-card service-card" style={{ 
               padding: '2.5rem', 

@@ -3,7 +3,7 @@ import { Search, ClipboardList, TrendingUp } from 'lucide-react';
 
 const processBackgrounds = [
   {
-    image: '/assets/bg-eyes-vibrant.png',
+    image: '/assets/optimized/bg-eyes-vibrant.jpg',
     position: 'center 50%',
     origin: '38% 46%',
     fromX: '-1.8%',
@@ -14,7 +14,7 @@ const processBackgrounds = [
     toScale: '1.16',
   },
   {
-    image: '/assets/bg-eyes-dreamy.png',
+    image: '/assets/optimized/bg-eyes-dreamy.jpg',
     position: 'center 75%',
     origin: '60% 54%',
     fromX: '1.2%',
@@ -25,7 +25,7 @@ const processBackgrounds = [
     toScale: '1.15',
   },
   {
-    image: '/assets/bg-eyes-intellectual.png',
+    image: '/assets/optimized/bg-eyes-intellectual.jpg',
     position: 'center 50%',
     origin: '52% 44%',
     fromX: '-0.8%',

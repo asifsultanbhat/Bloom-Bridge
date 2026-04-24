@@ -8,6 +8,8 @@ import Testimonials from './components/Testimonials';
 import Resources from './components/Resources';
 import FAQ from './components/FAQ';
 import Booking from './components/Booking';
+import Footer from './components/Footer';
+import ContactBar from './components/ContactBar';
 import './App.css';
 
 function App() {
@@ -41,21 +43,8 @@ function App() {
       <div className="reveal"><Resources /></div>
       <div className="reveal"><FAQ /></div>
       <div className="reveal"><Booking /></div>
-
-      <footer className="site-footer">
-        <div className="container">
-          <div className="footer-brand">
-            <span>Bloom & Bridge</span>
-          </div>
-          <p>
-            &copy; {new Date().getFullYear()} Bloom & Bridge. Professional rehabilitation psychology and special education support.
-          </p>
-          <div className="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
+      <ContactBar />
     </div>
   );
 }

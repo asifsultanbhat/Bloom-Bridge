@@ -51,7 +51,7 @@ img {
 
 body {
   font-family: 'Inter', sans-serif;
-  background-image: linear-gradient(rgba(249, 247, 242, 0.65), rgba(249, 247, 242, 0.65)), url('/assets/bg-bridge.png');
+  background-image: linear-gradient(rgba(249, 247, 242, 0.65), rgba(249, 247, 242, 0.65)), url('/assets/optimized/bg-bridge.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;

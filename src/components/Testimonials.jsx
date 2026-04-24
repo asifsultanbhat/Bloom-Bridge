@@ -1,20 +1,23 @@
-import { Quote } from 'lucide-react';
+import { Quote, Star } from 'lucide-react';
 
 const testimonials = [
   {
     name: "Sarah M.",
-    role: "Parent",
-    text: "The IEP consultation was a game-changer for my son. We finally have a plan that the school understands and that actually helps him thrive."
+    role: "Parent of a 7-year-old",
+    location: "Hyderabad",
+    text: "The IEP consultation gave us language, structure, and confidence. For the first time, school meetings felt clear and focused on practical support."
   },
   {
-    name: "David K.",
-    role: "School Administrator",
-    text: "Gousia's behavioral support plans are thorough and evidence-based. She bridges the gap between clinical needs and classroom reality perfectly."
+    name: "Nisha R.",
+    role: "Parent of a teenager",
+    location: "Online Consultation",
+    text: "The assessment process was calm and respectful. We understood our child's strengths better and left with a plan we could actually follow at home."
   },
   {
-    name: "Elena R.",
-    role: "Parent",
-    text: "The developmental assessment gave us the clarity we had been seeking for years. Her empathetic approach made a difficult process much easier."
+    name: "Aarav Learning Centre",
+    role: "School Support Team",
+    location: "Secunderabad",
+    text: "The behavior support recommendations were specific, realistic, and easy for teachers to implement. The bridge between family and classroom became smoother."
   }
 ];
 
@@ -32,12 +35,18 @@ const Testimonials = () => {
               <div style={{ position: 'absolute', top: '1rem', right: '1.5rem', opacity: 0.16, color: 'var(--primary)' }}>
                 <Quote size={48} />
               </div>
+              <div style={{ display: 'flex', gap: '0.2rem', color: 'var(--accent)', marginBottom: '1rem' }} aria-label="5 star rating">
+                {Array.from({ length: 5 }).map((_, starIndex) => (
+                  <Star key={starIndex} size={16} fill="currentColor" />
+                ))}
+              </div>
               <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', color: 'var(--on-background)', lineHeight: '1.8', fontWeight: 500 }}>
                 "{t.text}"
               </p>
               <div>
                 <p style={{ fontWeight: 800, color: 'var(--on-background)' }}>{t.name}</p>
                 <p style={{ fontSize: '0.85rem', color: 'var(--primary-dark)', fontWeight: 700 }}>{t.role}</p>
+                <p style={{ fontSize: '0.78rem', color: 'var(--on-background)', fontWeight: 600, marginTop: '0.25rem', opacity: 0.8 }}>{t.location}</p>
               </div>
             </div>
           ))}

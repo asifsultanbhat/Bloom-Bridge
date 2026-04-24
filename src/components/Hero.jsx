@@ -39,8 +39,11 @@ const Hero = () => {
             boxShadow: 'var(--shadow)'
           }}>
             <img 
-              src="/hero.png" 
+              src="/hero-optimized.jpg" 
               alt="Child-centered therapy and learning support at Bloom & Bridge" 
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>

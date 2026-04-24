@@ -40,7 +40,7 @@ const FAQ = () => {
 
   return (
     <section id="faq" style={{ 
-      backgroundImage: 'linear-gradient(rgba(249, 247, 242, 0.7), rgba(249, 247, 242, 0.7)), url("/assets/bg-faq.png")',
+      backgroundImage: 'linear-gradient(rgba(249, 247, 242, 0.7), rgba(249, 247, 242, 0.7)), url("/assets/optimized/bg-faq.jpg")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed'

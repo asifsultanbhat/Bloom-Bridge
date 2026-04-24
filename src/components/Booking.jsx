@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { ShieldCheck, Mail, Calendar as CalendarIcon, ArrowRight } from 'lucide-react';
+import { contact } from '../data/contact';
 
 const Booking = () => {
   useEffect(() => {
@@ -22,7 +23,7 @@ const Booking = () => {
   }, []);
 
   const openBooking = () => {
-    const bookingUrl = 'https://calendly.com/ahmadgousia/30min';
+    const bookingUrl = contact.bookingUrl;
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
         url: bookingUrl
@@ -47,7 +48,7 @@ const Booking = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundImage: 'url(/assets/bg-booking.png)',
+        backgroundImage: 'url(/assets/optimized/bg-booking.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center 70%',
         backgroundAttachment: 'fixed',
@@ -75,7 +76,7 @@ const Booking = () => {
                 <div style={{ padding: '0.8rem', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)' }}>
                   <Mail size={28} />
                 </div>
-                <a href="mailto:Ahmadgousia@gmail.com">Ahmadgousia@gmail.com</a>
+                <a href={`mailto:${contact.email}`}>{contact.email}</a>
               </div>
             </div>
           </div>
