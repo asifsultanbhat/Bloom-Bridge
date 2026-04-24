@@ -47,7 +47,7 @@ const Process = () => {
         setIsTransitioning(false);
       }, 1000);
 
-    }, 5000);
+    }, 3000);
     return () => clearInterval(timer);
   }, [nextBg]);
 

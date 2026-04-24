@@ -2,18 +2,18 @@
 
 :root {
   /* Color Palette - Serene Professional */
-  --primary: #7B9E87;
-  /* Sage */
-  --primary-dark: #5F7A68;
-  --secondary: #3D7B7B;
-  /* Teal */
-  --accent: #E9967A;
-  /* Coral */
+  --primary: #4A6352;
+  /* Darker Sage */
+  --primary-dark: #36493B;
+  --secondary: #2C5B5B;
+  /* Darker Teal */
+  --accent: #D2691E;
+  /* Darker Coral/Chocolate */
   --background: #F9F7F2;
   /* Warm White */
   --surface: #FFFFFF;
-  --on-background: #2C3E50;
-  --on-surface: #34495E;
+  --on-background: #12181F;
+  --on-surface: #243342;
   --on-primary: #FFFFFF;
 
   /* Semantic Colors */
